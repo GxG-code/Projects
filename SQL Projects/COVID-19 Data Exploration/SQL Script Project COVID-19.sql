@@ -1,4 +1,4 @@
-/* COVID 19 Worldwide Data Exploration, With Focus on N. Maceodnia ( Data Taken From https://ourworldindata.org/ on 2023-10-16) */
+/* COVID 19 Worldwide Data Exploration, With Focus on N. Macedonia ( Data Taken From https://ourworldindata.org/ on 2023-10-16) */
 
 
 
