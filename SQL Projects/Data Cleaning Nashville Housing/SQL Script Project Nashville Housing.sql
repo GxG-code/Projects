@@ -9,7 +9,7 @@ SELECT *
 FROM HousingData.dbo.NashvilleHousing;
 
 
--- Standardize Date Format
+-- Standardize date format
 
 SELECT SaleDate, SaleDateConverted, CONVERT(date, SaleDate, 102)
 FROM HousingData.dbo.NashvilleHousing;
@@ -23,7 +23,7 @@ UPDATE NashvilleHousing
 SET SaleDateConverted = CONVERT(date, SaleDate, 102);
 
 
--- Populate Property Address Data
+-- Populate property Address data
 
 SELECT *
 FROM HousingData.dbo.NashvilleHousing
@@ -48,7 +48,7 @@ JOIN HousingData.dbo.NashvilleHousing AS b
 WHERE a.PropertyAddress IS NULL;
 
 
--- Breaking out Adress into Individual Columns (Address, City and State)
+-- Breaking out Adress into individual columns (Address, City and State)
 
 SELECT 
 SUBSTRING(PropertyAddress, 1, CHARINDEX(',', PropertyAddress) -1 ) AS Address,
@@ -134,7 +134,7 @@ SET SoldAsVacant =
 	END;
 
 
--- Remove Duplicates
+-- Remove duplicates
 
 
 WITH RowNumCTE AS (
@@ -157,7 +157,7 @@ WHERE row_num > 1
 ORDER BY PropertyAddress;
 
 
--- Remove Unused Columns
+-- Remove unused columns
 
 SELECT *
 FROM HousingData.dbo.NashvilleHousing;
