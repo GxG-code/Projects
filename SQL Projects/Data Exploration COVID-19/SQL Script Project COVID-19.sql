@@ -1,5 +1,8 @@
-/* COVID 19 Worldwide Data Exploration, With Focus on N. Macedonia ( Data Taken From https://ourworldindata.org/ on 2023-10-16) */
+/* 
 
+COVID 19 Worldwide Data Exploration, With Focus on N. Macedonia ( Data Taken From https://ourworldindata.org/ on 2023-10-16) 
+
+*/
 
 
 SELECT *
@@ -44,7 +47,7 @@ GROUP BY location, population
 ORDER BY PercentPopulationInfected DESC;
 
 
--- Countries with Highest Death Count per Population
+-- Countries with the Highest Death Count per Population
 
 SELECT location, MAX(CAST(total_deaths AS int)) AS TotalDeathCount
 FROM [Project COVID 19].dbo.CovidDeaths
@@ -54,7 +57,7 @@ GROUP BY location
 ORDER BY TotalDeathCount DESC;
 
 
--- Contintents with the Highest Death Count Per Population
+-- Continents with the Highest Death Count per Population
 
 SELECT continent, MAX(CAST(Total_deaths AS int)) AS TotalDeathCount
 FROM [Project COVID 19].dbo.CovidDeaths
@@ -73,7 +76,7 @@ WHERE continent IS NOT NULL
 
 
 -- Total Population vs Vaccinations
--- Percentage of Population That Has Received at Least One COVID Vaccine
+-- Percentage of population that has received at least one COVID vaccine
 
 SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, 
 	SUM(CONVERT(bigint, vac.new_vaccinations)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.Date) AS RollingPeopleVaccinated
@@ -86,7 +89,7 @@ WHERE dea.continent IS NOT NULL
 ORDER BY location, date
 
 
--- Using CTE to Perform Calculation on Partition By in Previous query
+-- Using CTE to perform calculation on partition by in previous query
 
 WITH PopvsVac (continent, location, date, population, new_vaccinations, RollingPeopleVaccinated) AS
 (
@@ -105,7 +108,7 @@ SELECT *, (RollingPeopleVaccinated / population) * 100 AS '%RollingPeopleVaccina
 FROM PopvsVac
 
 
--- Using Temp Table to Perform Calculation on Partition By in Previous Query
+-- Using temp table to perform calculation on partition by in previous query
 
 DROP TABLE IF EXISTS #PercentPopulationVaccinated
 CREATE TABLE #PercentPopulationVaccinated
@@ -133,7 +136,7 @@ SELECT *, (RollingPeopleVaccinated / Population) * 100 AS '%RollingPeopleVaccina
 FROM #PercentPopulationVaccinated
 
 
--- View to Store Data for Later Visualizations
+-- View to store data for later visualizations
 
 CREATE VIEW PercentPopulationVaccinated AS
 SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
