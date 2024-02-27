@@ -14,10 +14,8 @@ FROM HousingData.dbo.NashvilleHousing;
 SELECT SaleDate, SaleDateConverted, CONVERT(date, SaleDate, 102)
 FROM HousingData.dbo.NashvilleHousing;
 
-
 ALTER TABLE NashvilleHousing
 ADD SaleDateConverted date;
-
 
 UPDATE NashvilleHousing
 SET SaleDateConverted = CONVERT(date, SaleDate, 102);
@@ -31,7 +29,11 @@ FROM HousingData.dbo.NashvilleHousing
 ORDER BY ParcelID;
 
 
-SELECT a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, ISNULL(a.PropertyAddress, b.PropertyAddress)
+SELECT a.ParcelID, 
+	a.PropertyAddress, 
+	b.ParcelID, 
+	b.PropertyAddress,
+	ISNULL(a.PropertyAddress, b.PropertyAddress)
 FROM HousingData.dbo.NashvilleHousing AS a
 JOIN HousingData.dbo.NashvilleHousing AS b
 	ON a.ParcelID = b.ParcelID
@@ -141,14 +143,12 @@ WITH RowNumCTE AS (
 SELECT *,
 	ROW_NUMBER() OVER (
 	PARTITION BY ParcelID,
-				 PropertyAddress,
-				 SalePrice,
-				 SaleDate,
-				 LegalReference
-					ORDER BY 
-						UniqueID
-						) row_num
-
+	PropertyAddress,
+	SalePrice,
+	SaleDate,
+	LegalReference
+		ORDER BY UniqueID
+	) row_num
 FROM HousingData.dbo.NashvilleHousing
 )
 SELECT *
