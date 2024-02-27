@@ -1,1 +1,1 @@
-Feel free to explore some of my everyday projects demonstrating my skills.
+Enjoy exploring some of my everyday projects, demonstrating my skills.
