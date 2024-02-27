@@ -82,10 +82,9 @@ SELECT OwnerAddress
 FROM HousingData.dbo.NashvilleHousing;
 
 
-SELECT
-PARSENAME(REPLACE(OwnerAddress, ',', '.'), 3),
-PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2),
-PARSENAME(REPLACE(OwnerAddress, ',', '.'), 1)
+SELECT	PARSENAME(REPLACE(OwnerAddress, ',', '.'), 3),
+	PARSENAME(REPLACE(OwnerAddress, ',', '.'), 2),
+	PARSENAME(REPLACE(OwnerAddress, ',', '.'), 1)
 FROM HousingData.dbo.NashvilleHousing;
 
 
