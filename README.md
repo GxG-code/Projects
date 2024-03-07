@@ -1,1 +1,1 @@
-Enjoy exploring some of my everyday projects, demonstrating my skills.
+Enjoy exploring some of my projects, demonstrating my skills.
